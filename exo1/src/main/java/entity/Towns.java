@@ -18,9 +18,7 @@ public class Towns {
 
         if (search.length() < 2) throw new NotFoundException();
 
-        List<String> ret = towns.stream().filter(ville -> ville.toUpperCase().contains(search.toUpperCase())).collect(Collectors.toList());
-
-        return ret;
+        return towns.stream().filter(ville -> ville.toUpperCase().contains(search.toUpperCase())).collect(Collectors.toList());
 
     }
 

@@ -26,6 +26,13 @@ public class Exo4Test {
     }
 
     @Test
+    void shoudldNotThrowExceptIfWhenWordSearchIsGT1() {
+        Assertions.assertDoesNotThrow(() -> {
+            tools.townSearch("ab");
+        });
+    }
+
+    @Test
     void FindValencienneAndVancoverWhenSearchIsVA(){
         List<String> rep = tools.townSearch("Va");
         Assertions.assertTrue(rep.containsAll(Arrays.asList("Valencienne","Vancouver")));
