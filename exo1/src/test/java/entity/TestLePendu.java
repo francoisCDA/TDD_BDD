@@ -17,7 +17,7 @@ public class TestLePendu {
     private LePenduImpl lePendu;
 
     @Mock
-    private WordGeneratorImpl wordGenerator;
+    private WordGenerator wordGenerator;
 
     private List<String> wordsTest = Arrays.asList("ordinateur","processeur","stagiaire");
 
@@ -40,14 +40,14 @@ public class TestLePendu {
         lePendu = new LePenduImpl(wordGenerator);
         Mockito.when(wordGenerator.getWord()).thenReturn("table");
         lePendu.tryChar('z');
-        Assertions.assertEquals(lePendu.getMasque(),"_z___");
+        Assertions.assertEquals(lePendu.getMasque(),"_____");
     }
 
     @Test
     void testPlayerWinWhenAllCharAreFind(){
         lePendu = new LePenduImpl(wordGenerator);
-        lePendu.setChars(Arrays.asList('a','e','b','l','t'));
         Mockito.when(wordGenerator.getWord()).thenReturn("table");
+        lePendu.setChars(Arrays.asList('a','e','b','l','t'));
         Assertions.assertTrue(lePendu.isPlayerWin());
     }
 
