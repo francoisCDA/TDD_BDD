@@ -15,6 +15,7 @@ public class ProductExo5 {
     }
 
     private void updateQuality(int qualityChange){
+        if (isDairyProduct) qualityChange *=2;
         quality += qualityChange;
         if (quality < 0 ) quality = 0;
         if (quality > 50 ) quality = 50;
@@ -26,7 +27,7 @@ public class ProductExo5 {
             updateQuality(1);
             return;
         }
-        if (isDairyProduct || sellin < 0) {
+        if (sellin < 0) {
             updateQuality(-2);
         } else {
             updateQuality(-1);
