@@ -28,7 +28,7 @@ public class TestLePendu {
     }
 
     @Test
-    void testCheckStarIsTrueWhenCharIsInWord(){
+    void testCheckMasqueWhenCharIsInWord(){
         lePendu = new LePenduImpl(wordGenerator);
         Mockito.when(wordGenerator.getWord()).thenReturn("table");
         lePendu.tryChar('a');
@@ -36,7 +36,7 @@ public class TestLePendu {
     }
 
     @Test
-    void testCheckStarIsFalseWhenCharIsntInWord(){
+    void testCheckMasqueWhenCharIsntInWord(){
         lePendu = new LePenduImpl(wordGenerator);
         Mockito.when(wordGenerator.getWord()).thenReturn("table");
         lePendu.tryChar('z');
