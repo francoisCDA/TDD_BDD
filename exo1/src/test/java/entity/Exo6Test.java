@@ -24,8 +24,8 @@ public class Exo6Test {
 
     @Test
     void dailyRountineDecreaseCondition(){
-        car.setRentDueIn(20);
-        car.setCondition(50);
+        car = Car.builder().rentDueIn(20).condition(50).isLuxuryCar(false).year(2023).build();
+
         car.dailyRoutine();
 
         Assertions.assertEquals(49,car.getCondition());
@@ -53,12 +53,10 @@ public class Exo6Test {
 
     @Test
     void dailyRountineDecreaseConditionFasterWhenRentDueInIsNegative(){
-        car.setRentDueIn(-1);
-        car.setCondition(50);
-
+        car = Car.builder().rentDueIn(-1).condition(50).isLuxuryCar(false).year(2023).build();
         car.dailyRoutine();
 
-        Assertions.assertEquals(51,car.getCondition());
+        Assertions.assertEquals(48,car.getCondition());
     }
 
     @Test
