@@ -15,7 +15,7 @@ import java.util.List;
 public class TestLePendu {
 
 
-    private LePenduImpl lePendu;
+    private LePendu lePendu;
 
     @Mock
     private WordGenerator wordGenerator;
@@ -26,7 +26,7 @@ public class TestLePendu {
     @Test
     void testCheckMasqueWhenCharIsInWord() throws MoreNineTryException {
         Mockito.when(wordGenerator.getWord()).thenReturn("table");
-        lePendu = new LePenduImpl(wordGenerator);
+        lePendu = new LePendu(wordGenerator);
         lePendu.tryChar('a');
         Assertions.assertEquals("_a___",lePendu.getMasque());
     }
@@ -34,7 +34,7 @@ public class TestLePendu {
     @Test
     void testCheckMasqueWhenNewCharIsInWord() throws MoreNineTryException {
         Mockito.when(wordGenerator.getWord()).thenReturn("table");
-        lePendu = new LePenduImpl(wordGenerator);
+        lePendu = new LePendu(wordGenerator);
         lePendu.setChars(Arrays.asList('a'));
         lePendu.tryChar('b');
         Assertions.assertEquals("_ab__",lePendu.getMasque());
@@ -43,7 +43,7 @@ public class TestLePendu {
     @Test
     void testCheckMasqueWhen2CharIsInWord() throws MoreNineTryException {
         Mockito.when(wordGenerator.getWord()).thenReturn("tabula");
-        lePendu = new LePenduImpl(wordGenerator);
+        lePendu = new LePendu(wordGenerator);
         lePendu.tryChar('a');
         Assertions.assertEquals("_a___a",lePendu.getMasque());
     }
@@ -51,7 +51,7 @@ public class TestLePendu {
     @Test
     void testCheckMasqueWhenCharIsntInWord() throws MoreNineTryException {
         Mockito.when(wordGenerator.getWord()).thenReturn("table");
-        lePendu = new LePenduImpl(wordGenerator);
+        lePendu = new LePendu(wordGenerator);
         lePendu.tryChar('z');
         Assertions.assertEquals("_____",lePendu.getMasque());
     }
@@ -59,7 +59,7 @@ public class TestLePendu {
     @Test
     void testCheckMasqueWhenSecondCharIsntInWord() throws MoreNineTryException {
         Mockito.when(wordGenerator.getWord()).thenReturn("table");
-        lePendu = new LePenduImpl(wordGenerator);
+        lePendu = new LePendu(wordGenerator);
         lePendu.setChars(Arrays.asList('a'));
         lePendu.tryChar('z');
         Assertions.assertEquals("_a___",lePendu.getMasque());
@@ -68,7 +68,7 @@ public class TestLePendu {
     @Test
     void testPlayerWinWhenAllCharAreFind(){
         Mockito.when(wordGenerator.getWord()).thenReturn("table");
-        lePendu = new LePenduImpl(wordGenerator);
+        lePendu = new LePendu(wordGenerator);
 
         lePendu.setChars(Arrays.asList('a','e','b','l','t'));
         Assertions.assertTrue(lePendu.isPlayerWin());
@@ -77,7 +77,7 @@ public class TestLePendu {
     @Test
     void testTryCharIncreaseTryCounter() throws MoreNineTryException {
         Mockito.when(wordGenerator.getWord()).thenReturn("table");
-        lePendu = new LePenduImpl(wordGenerator);
+        lePendu = new LePendu(wordGenerator);
         lePendu.tryChar('z');
         Assertions.assertEquals(1,lePendu.getTryCount());
     }
@@ -85,7 +85,7 @@ public class TestLePendu {
     @Test
     void testTryCharThrowsMoreNineTryExceptionWhenTryCountGT9(){
         Mockito.when(wordGenerator.getWord()).thenReturn("table");
-        lePendu = new LePenduImpl(wordGenerator);
+        lePendu = new LePendu(wordGenerator);
         lePendu.setTryCount(9);
 
         Assertions.assertThrows(MoreNineTryException.class,() -> lePendu.tryChar('z') );
