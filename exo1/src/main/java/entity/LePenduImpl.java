@@ -42,4 +42,9 @@ public class LePenduImpl implements LePendu {
             chars.add(playerInput);
         }
     }
+
+
+    public void setChars(List<Character> list) {
+        chars.addAll(list);
+    }
 }

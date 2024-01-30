@@ -13,7 +13,7 @@ import java.util.List;
 @ExtendWith(MockitoExtension.class)
 public class TestLePendu {
 
-    @Mock
+
     private LePenduImpl lePendu;
 
     @Mock
@@ -46,8 +46,8 @@ public class TestLePendu {
     @Test
     void testPlayerWinWhenAllCharAreFind(){
         lePendu = new LePenduImpl(wordGenerator);
+        lePendu.setChars(Arrays.asList('a','e','b','l','t'));
         Mockito.when(wordGenerator.getWord()).thenReturn("table");
-        Mockito.when(lePendu.getChars()).thenReturn(Arrays.asList('a','e','b','l','t'));
         Assertions.assertTrue(lePendu.isPlayerWin());
     }
 
