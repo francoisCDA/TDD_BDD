@@ -22,11 +22,6 @@ public class TestLePendu {
     private List<String> wordsTest = Arrays.asList("ordinateur","processeur","stagiaire");
 
 
-    @BeforeEach
-    void setUp(){
-        wordGenerator = new WordGeneratorImpl(wordsTest);
-    }
-
     @Test
     void testCheckMasqueWhenCharIsInWord(){
         lePendu = new LePenduImpl(wordGenerator);

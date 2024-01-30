@@ -5,13 +5,16 @@ import java.util.List;
 
 public class LePenduImpl implements LePendu {
 
+    private WordGenerator wordGenerator;
     private String wordToFind;
 
     private HashSet<Character> chars;
 
 
     public LePenduImpl(WordGenerator wordGenerator) {
-        wordToFind = wordGenerator.getWord();
+        this.wordGenerator = wordGenerator;
+        wordToFind = this.wordGenerator.getWord();
+        chars = new HashSet<>();
     }
 
 
