@@ -1,6 +1,6 @@
 package entity;
 
-import exception.MoreNineTryException;
+import exception.MoreNineMistakeException;
 
 import java.util.HashSet;
 import java.util.List;
@@ -11,7 +11,7 @@ public class LePendu {
     private String wordToFind;
     private HashSet<Character> chars;
 
-    private int tryCount;
+    private int mistakeCount;
 
     private char test;
 
@@ -46,11 +46,13 @@ public class LePendu {
         return chars.stream().toList();
     }
 
-    public void tryChar(Character playerInput) throws MoreNineTryException {
-        tryCount++;
-        if (tryCount>9) throw new MoreNineTryException();
+    public void tryChar(Character playerInput) throws MoreNineMistakeException {
+
         if (wordToFind.contains(playerInput.toString())) {
             chars.add(playerInput);
+        } else {
+            mistakeCount++;
+            if (mistakeCount>9) throw new MoreNineMistakeException();
         }
     }
 
@@ -62,11 +64,11 @@ public class LePendu {
         wordToFind = wordGenerator.getWord();
     }
 
-    public int getTryCount(){
-        return tryCount;
+    public int getMistakeCount(){
+        return mistakeCount;
     }
 
-    public void setTryCount(int count){
-        tryCount = count;
+    public void setMistakeCount(int count){
+        mistakeCount = count;
     }
 }

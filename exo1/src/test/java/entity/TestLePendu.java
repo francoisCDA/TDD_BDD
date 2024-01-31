@@ -1,6 +1,6 @@
 package entity;
 
-import exception.MoreNineTryException;
+import exception.MoreNineMistakeException;
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
@@ -24,7 +24,7 @@ public class TestLePendu {
 
 
     @Test
-    void testCheckMasqueWhenCharIsInWord() throws MoreNineTryException {
+    void testCheckMasqueWhenCharIsInWord() throws MoreNineMistakeException {
         Mockito.when(wordGenerator.getWord()).thenReturn("table");
         lePendu = new LePendu(wordGenerator);
         lePendu.tryChar('a');
@@ -32,7 +32,7 @@ public class TestLePendu {
     }
 
     @Test
-    void testCheckMasqueWhenNewCharIsInWord() throws MoreNineTryException {
+    void testCheckMasqueWhenNewCharIsInWord() throws MoreNineMistakeException {
         Mockito.when(wordGenerator.getWord()).thenReturn("table");
         lePendu = new LePendu(wordGenerator);
         lePendu.setChars(Arrays.asList('a'));
@@ -41,7 +41,7 @@ public class TestLePendu {
     }
 
     @Test
-    void testCheckMasqueWhen2CharIsInWord() throws MoreNineTryException {
+    void testCheckMasqueWhen2CharIsInWord() throws MoreNineMistakeException {
         Mockito.when(wordGenerator.getWord()).thenReturn("tabula");
         lePendu = new LePendu(wordGenerator);
         lePendu.tryChar('a');
@@ -49,7 +49,7 @@ public class TestLePendu {
     }
 
     @Test
-    void testCheckMasqueWhenCharIsntInWord() throws MoreNineTryException {
+    void testCheckMasqueWhenCharIsntInWord() throws MoreNineMistakeException {
         Mockito.when(wordGenerator.getWord()).thenReturn("table");
         lePendu = new LePendu(wordGenerator);
         lePendu.tryChar('z');
@@ -57,7 +57,7 @@ public class TestLePendu {
     }
 
     @Test
-    void testCheckMasqueWhenSecondCharIsntInWord() throws MoreNineTryException {
+    void testCheckMasqueWhenSecondCharIsntInWord() throws MoreNineMistakeException {
         Mockito.when(wordGenerator.getWord()).thenReturn("table");
         lePendu = new LePendu(wordGenerator);
         lePendu.setChars(Arrays.asList('a'));
@@ -75,20 +75,29 @@ public class TestLePendu {
     }
 
     @Test
-    void testTryCharIncreaseTryCounter() throws MoreNineTryException {
+    void testTryCharIncreaseTryCounter() throws MoreNineMistakeException {
         Mockito.when(wordGenerator.getWord()).thenReturn("table");
         lePendu = new LePendu(wordGenerator);
         lePendu.tryChar('z');
-        Assertions.assertEquals(1,lePendu.getTryCount());
+        Assertions.assertEquals(1,lePendu.getMistakeCount());
     }
 
     @Test
-    void testTryCharThrowsMoreNineTryExceptionWhenTryCountGT9(){
+    void testTryCharThrowsMoreNineMistakeExceptionWhenTryCountGT9(){
         Mockito.when(wordGenerator.getWord()).thenReturn("table");
         lePendu = new LePendu(wordGenerator);
-        lePendu.setTryCount(9);
+        lePendu.setMistakeCount(9);
 
-        Assertions.assertThrows(MoreNineTryException.class,() -> lePendu.tryChar('z') );
+        Assertions.assertThrows(MoreNineMistakeException.class,() -> lePendu.tryChar('z') );
+    }
+
+    @Test
+    void testTryCharDontThrowsMoreNineMistakeExceptionWhenGoodGuessWhenTryCountEgalsNine(){
+        Mockito.when(wordGenerator.getWord()).thenReturn("table");
+        lePendu = new LePendu(wordGenerator);
+        lePendu.setMistakeCount(9);
+
+        Assertions.assertDoesNotThrow(() -> lePendu.tryChar('a') );
     }
 
 }
