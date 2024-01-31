@@ -6,7 +6,7 @@ public class Frame {
 
     private SpeareGenerator speareGenerator;
 
-    private int score;
+    private int frameScore;
 
     private int spearCount;
 
@@ -20,18 +20,13 @@ public class Frame {
 
     public void getSpeare() throws SpeareException {
         spearCount++;
-        if (( frameNumber < 10 && (spearCount > 2 || score == 10 ) )  || ( frameNumber == 10 && spearCount > 2 && score < 10 ) ) throw new SpeareException();
+        if (( frameNumber < 10 && (spearCount > 2 || frameScore == 10 ) )  || ( frameNumber == 10 && spearCount > 2 && frameScore < 10 ) ) throw new SpeareException();
 
-        score += speareGenerator.getSpeare();
+        frameScore += speareGenerator.getSpeare();
     }
 
     public int getScore(){
-        return score;
+        return frameScore;
     }
-
-    public void setFrameNumber(int frameNumber) {
-        this.frameNumber = frameNumber;
-    }
-
 
 }
