@@ -47,12 +47,11 @@ public class LePendu {
     }
 
     public void tryChar(Character playerInput) throws MoreNineMistakeException {
-
+        if (mistakeCount>=9) throw new MoreNineMistakeException();
         if (wordToFind.contains(playerInput.toString())) {
             chars.add(playerInput);
         } else {
             mistakeCount++;
-            if (mistakeCount>9) throw new MoreNineMistakeException();
         }
     }
 

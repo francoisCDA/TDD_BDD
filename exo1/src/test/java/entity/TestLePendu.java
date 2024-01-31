@@ -83,21 +83,12 @@ public class TestLePendu {
     }
 
     @Test
-    void testTryCharThrowsMoreNineMistakeExceptionWhenTryCountGT9(){
+    void testTryCharThrowsMoreNineMistakeExceptionWhenMistakeCountEgals9(){
         Mockito.when(wordGenerator.getWord()).thenReturn("table");
         lePendu = new LePendu(wordGenerator);
         lePendu.setMistakeCount(9);
 
         Assertions.assertThrows(MoreNineMistakeException.class,() -> lePendu.tryChar('z') );
-    }
-
-    @Test
-    void testTryCharDontThrowsMoreNineMistakeExceptionWhenGoodGuessWhenTryCountEgalsNine(){
-        Mockito.when(wordGenerator.getWord()).thenReturn("table");
-        lePendu = new LePendu(wordGenerator);
-        lePendu.setMistakeCount(9);
-
-        Assertions.assertDoesNotThrow(() -> lePendu.tryChar('a') );
     }
 
 }
