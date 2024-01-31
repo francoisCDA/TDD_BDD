@@ -69,7 +69,6 @@ public class TestLePendu {
     void testPlayerWinWhenAllCharAreFind(){
         Mockito.when(wordGenerator.getWord()).thenReturn("table");
         lePendu = new LePendu(wordGenerator);
-
         lePendu.setChars(Arrays.asList('a','e','b','l','t'));
         Assertions.assertTrue(lePendu.isPlayerWin());
     }
@@ -87,7 +86,6 @@ public class TestLePendu {
         Mockito.when(wordGenerator.getWord()).thenReturn("table");
         lePendu = new LePendu(wordGenerator);
         lePendu.setMistakeCount(9);
-
         Assertions.assertThrows(MoreNineMistakeException.class,() -> lePendu.tryChar('z') );
     }
 

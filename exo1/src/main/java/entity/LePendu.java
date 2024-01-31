@@ -46,11 +46,11 @@ public class LePendu {
         }
     }
 
+    // ***        < méthodes nécessaires aux tests >       *** //
+
     public void setChars(List<Character> list) {
         chars.addAll(list);
     }
-
-    // ***        < méthodes nécessaires aux tests >       *** //
     public int getMistakeCount(){
         return mistakeCount;
     }
