@@ -13,37 +13,28 @@ public class LePendu {
 
     private int mistakeCount;
 
-    private char test;
-
 
     public LePendu(WordGenerator wordGenerator) {
         this.wordGenerator = wordGenerator;
         wordToFind = this.wordGenerator.getWord();
-        setWordToFind();
         chars = new HashSet<>();
     }
 
-
     public String getMasque() {
-        StringBuilder masque = new StringBuilder();
+        StringBuilder masqueBuilder = new StringBuilder();
 
         for (int i = 0 ; i < wordToFind.length() ; i++){
             if (chars.contains(wordToFind.charAt(i))){
-                masque.append(wordToFind.charAt(i));
+                masqueBuilder.append(wordToFind.charAt(i));
             } else {
-                masque.append("_");
+                masqueBuilder.append("_");
             }
         }
-
-        return masque.toString();
+        return masqueBuilder.toString();
     }
 
     public boolean isPlayerWin() {
         return !getMasque().contains("_");
-    }
-
-    public List<Character> getChars() {
-        return chars.stream().toList();
     }
 
     public void tryChar(Character playerInput) throws MoreNineMistakeException {
@@ -59,10 +50,7 @@ public class LePendu {
         chars.addAll(list);
     }
 
-    public void setWordToFind(){
-        wordToFind = wordGenerator.getWord();
-    }
-
+    // ***        < méthodes nécessaires aux tests >       *** //
     public int getMistakeCount(){
         return mistakeCount;
     }
@@ -70,4 +58,6 @@ public class LePendu {
     public void setMistakeCount(int count){
         mistakeCount = count;
     }
+
+    //           < méthodes nécessaires aux tests />           //
 }

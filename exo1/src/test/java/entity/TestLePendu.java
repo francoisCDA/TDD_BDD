@@ -91,4 +91,6 @@ public class TestLePendu {
         Assertions.assertThrows(MoreNineMistakeException.class,() -> lePendu.tryChar('z') );
     }
 
+
+
 }
