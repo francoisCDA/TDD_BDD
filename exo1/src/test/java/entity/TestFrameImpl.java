@@ -3,7 +3,6 @@ package entity;
 
 import exception.SpeareException;
 import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
@@ -11,65 +10,65 @@ import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 @ExtendWith(MockitoExtension.class)
-public class TestBowling {
+public class TestFrameImpl {
 
     @Mock
     private SpeareGenerator spearelGen;
 
-    private Frame frame;
+    private FrameImpl frameImpl;
 
     @Test
     void testStandardFrameOneSpeareIncreaseScore() throws SpeareException {
         Mockito.when(spearelGen.getSpeare()).thenReturn(5);
-        frame = new Frame(spearelGen,2);
+        frameImpl = new FrameImpl(spearelGen,2);
 
-        frame.getSpeare();
+        frameImpl.getSpeare();
 
-        Assertions.assertEquals(5,frame.getScore());
+        Assertions.assertEquals(5, frameImpl.getScore());
     }
 
     @Test
     void testStandardFrameTwoSpeareIncreaseScore() throws SpeareException {
         Mockito.when(spearelGen.getSpeare()).thenReturn(5);
-        frame = new Frame(spearelGen,2);
+        frameImpl = new FrameImpl(spearelGen,2);
 
-        frame.getSpeare();
-        frame.getSpeare();
+        frameImpl.getSpeare();
+        frameImpl.getSpeare();
 
-        Assertions.assertEquals(10,frame.getScore());
+        Assertions.assertEquals(10, frameImpl.getScore());
     }
 
     @Test
     void testStandardFrameThreeSpeareThrowSpeareException() throws SpeareException {
         Mockito.when(spearelGen.getSpeare()).thenReturn(5);
-        frame = new Frame(spearelGen,2);
+        frameImpl = new FrameImpl(spearelGen,2);
 
-        frame.getSpeare();
+        frameImpl.getSpeare();
         Mockito.when(spearelGen.getSpeare()).thenReturn(4);
-        frame.getSpeare();
+        frameImpl.getSpeare();
 
-        Assertions.assertEquals(9,frame.getScore());
+        Assertions.assertEquals(9, frameImpl.getScore());
     }
 
     @Test
     void testStandard3SpeareThrowSpareException() throws SpeareException {
         Mockito.when(spearelGen.getSpeare()).thenReturn(2);
-        frame = new Frame(spearelGen,2);
+        frameImpl = new FrameImpl(spearelGen,2);
 
-        frame.getSpeare();
-        frame.getSpeare();
+        frameImpl.getSpeare();
+        frameImpl.getSpeare();
 
-        Assertions.assertThrowsExactly(SpeareException.class,() -> frame.getSpeare());
+        Assertions.assertThrowsExactly(SpeareException.class,() -> frameImpl.getSpeare());
     }
 
     @Test
     void testStandardSpeareStrikeThrowException() throws SpeareException {
         Mockito.when(spearelGen.getSpeare()).thenReturn(10);
-        frame = new Frame(spearelGen,2);
+        frameImpl = new FrameImpl(spearelGen,2);
 
-        frame.getSpeare();
+        frameImpl.getSpeare();
 
-        Assertions.assertThrowsExactly(SpeareException.class,() -> frame.getSpeare());
+        Assertions.assertThrowsExactly(SpeareException.class,() -> frameImpl.getSpeare());
     }
 
     ///   Finale frame
@@ -77,81 +76,81 @@ public class TestBowling {
     @Test
     void testFinaleSpeareStrikeDontThrowExeption() throws SpeareException {
         Mockito.when(spearelGen.getSpeare()).thenReturn(10);
-        frame = new Frame(spearelGen,10);
+        frameImpl = new FrameImpl(spearelGen,10);
 
-        frame.getSpeare();
+        frameImpl.getSpeare();
 
-        Assertions.assertDoesNotThrow(() -> frame.getSpeare());
+        Assertions.assertDoesNotThrow(() -> frameImpl.getSpeare());
     }
 
     @Test
     void testFinaleSpeareStrikeIncreaseScore() throws SpeareException {
         Mockito.when(spearelGen.getSpeare()).thenReturn(10);
-        frame = new Frame(spearelGen,10);
+        frameImpl = new FrameImpl(spearelGen,10);
 
-        frame.getSpeare();
-        frame.getSpeare();
+        frameImpl.getSpeare();
+        frameImpl.getSpeare();
 
-        Assertions.assertEquals(20,frame.getScore());
+        Assertions.assertEquals(20, frameImpl.getScore());
     }
 
     @Test
     void testFinaleSpeareTwoMoreSpeareAfterStrokeDontThrowExeption() throws SpeareException {
         Mockito.when(spearelGen.getSpeare()).thenReturn(10);
-        frame = new Frame(spearelGen,10);
+        frameImpl = new FrameImpl(spearelGen,10);
 
-        frame.getSpeare();
-        frame.getSpeare();
+        frameImpl.getSpeare();
+        frameImpl.getSpeare();
 
-        Assertions.assertDoesNotThrow(() -> frame.getSpeare());
+        Assertions.assertDoesNotThrow(() -> frameImpl.getSpeare());
     }
 
     @Test
     void testFinaleSpeareTwoMoreSpeareAfterStrokeIncreaseScore() throws SpeareException {
         Mockito.when(spearelGen.getSpeare()).thenReturn(10);
-        frame = new Frame(spearelGen,10);
+        frameImpl = new FrameImpl(spearelGen,10);
 
-        frame.getSpeare();
-        frame.getSpeare();
-        frame.getSpeare();
+        frameImpl.getSpeare();
+        frameImpl.getSpeare();
+        frameImpl.getSpeare();
 
-        Assertions.assertEquals(30,frame.getScore());
+        Assertions.assertEquals(30, frameImpl.getScore());
     }
 
     @Test
     void testFinaleSpeareOneMoreSpeareAfterSpareIncreaseScore() throws SpeareException {
         Mockito.when(spearelGen.getSpeare()).thenReturn(5);
-        frame = new Frame(spearelGen,10);
+        frameImpl = new FrameImpl(spearelGen,10);
 
-        frame.getSpeare();
-        frame.getSpeare();
+        frameImpl.getSpeare();
+        frameImpl.getSpeare();
         Mockito.when(spearelGen.getSpeare()).thenReturn(2);
-        frame.getSpeare();
+        frameImpl.getSpeare();
 
-        Assertions.assertEquals(12,frame.getScore());
+        Assertions.assertEquals(12, frameImpl.getScore());
     }
 
     @Test
     void testFinaleSpeareOneMoreSpeareAfterSpareDontThrowException() throws SpeareException {
 
-        frame = new Frame(spearelGen,10);
+        frameImpl = new FrameImpl(spearelGen,10);
         Mockito.when(spearelGen.getSpeare()).thenReturn(3);
-        frame.getSpeare();
+        frameImpl.getSpeare();
         Mockito.when(spearelGen.getSpeare()).thenReturn(7);
-        frame.getSpeare();
+        frameImpl.getSpeare();
 
-        Assertions.assertDoesNotThrow(() -> frame.getSpeare());
+        Assertions.assertDoesNotThrow(() -> frameImpl.getSpeare());
     }
 
     @Test
     void testFinaleSpeareMoreTwoRegularSpeareThrowSpareException() throws SpeareException {
         Mockito.when(spearelGen.getSpeare()).thenReturn(3);
-        frame = new Frame(spearelGen,10);
+        frameImpl = new FrameImpl(spearelGen,10);
 
-        frame.getSpeare();
-        frame.getSpeare();
+        frameImpl.getSpeare();
+        frameImpl.getSpeare();
 
-        Assertions.assertThrowsExactly(SpeareException.class,() -> frame.getSpeare());
+        Assertions.assertThrowsExactly(SpeareException.class,() -> frameImpl.getSpeare());
     }
 
 }

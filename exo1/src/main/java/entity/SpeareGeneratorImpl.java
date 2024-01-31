@@ -20,4 +20,5 @@ public class SpeareGeneratorImpl implements SpeareGenerator {
         if (pin == 0) pin = 10;
         return pinFall;
     }
+
 }
