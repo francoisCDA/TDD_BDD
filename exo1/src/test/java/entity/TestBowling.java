@@ -118,4 +118,38 @@ public class TestBowling {
         Assertions.assertEquals(30,frame.getScore());
     }
 
+    @Test
+    void testFinaleSpeareOneMoreSpeareAfterSpareIncreaseScore() throws SpeareException {
+        Mockito.when(spearelGen.getSpeare()).thenReturn(5);
+        frame = new Frame(spearelGen,10);
+
+        frame.getSpeare();
+        frame.getSpeare();
+        frame.getSpeare();
+
+        Assertions.assertEquals(15,frame.getScore());
+    }
+
+    @Test
+    void testFinaleSpeareOneMoreSpeareAfterSpareDontThrowException() throws SpeareException {
+        Mockito.when(spearelGen.getSpeare()).thenReturn(5);
+        frame = new Frame(spearelGen,10);
+
+        frame.getSpeare();
+        frame.getSpeare();
+
+        Assertions.assertDoesNotThrow(() -> frame.getSpeare());
+    }
+
+    @Test
+    void testFinaleSpeareMoreTwoRegularSpareThrowSpareException() throws SpeareException {
+        Mockito.when(spearelGen.getSpeare()).thenReturn(3);
+        frame = new Frame(spearelGen,10);
+
+        frame.getSpeare();
+        frame.getSpeare();
+
+        Assertions.assertThrowsExactly(SpeareException.class,() -> frame.getSpeare());
+    }
+
 }

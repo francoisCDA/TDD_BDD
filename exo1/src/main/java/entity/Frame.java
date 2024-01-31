@@ -20,7 +20,8 @@ public class Frame {
 
     public void getSpeare() throws SpeareException {
         spearCount++;
-        if ( frameNumber < 10 && (spearCount > 2 || score == 10 ) ) throw new SpeareException();
+        if (( frameNumber < 10 && (spearCount > 2 || score == 10 ) )  || ( frameNumber == 10 && spearCount > 2 && score < 10 ) ) throw new SpeareException();
+
         score += speareGenerator.getSpeare();
     }
 
