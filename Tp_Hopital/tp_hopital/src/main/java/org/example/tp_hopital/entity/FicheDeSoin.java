@@ -6,28 +6,27 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.ArrayList;
-import java.util.List;
-
 @Entity
 @Data
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class Patient {
+public class FicheDeSoin {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
-    private int id;
+    private Integer id;
 
-    private String name;
+    @Column(name="type_de_soin")
+    private String typeSoin;
 
-    private String phone;
-
-    @OneToMany(mappedBy = "patient", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Consultation> consultations = new ArrayList<>();
+    @Column(name="nb_jour")
+    private int nbjour;
 
 
+    @ManyToOne
+    @JoinColumn(name = "consultation_id")
+    private Consultation consultation;
 
 }

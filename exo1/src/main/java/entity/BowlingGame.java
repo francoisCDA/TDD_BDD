@@ -7,7 +7,6 @@ import java.util.List;
 
 public class BowlingGame {
 
-
     private List<Frame> frameList;
 
     public BowlingGame(){
@@ -19,12 +18,11 @@ public class BowlingGame {
         if ( frameList.size() >= 10 ) throw new GameEndException();
 
         if (frameList.size() > 1) {
-
+            List<Integer> actualSpears = frameList.get(frameList.size()-1).getFrameScores();
+            frameList.get(frameList.size()-2).addBonus(actualSpears);
         }
 
-
         frameList.add(nextFrame);
-
 
     }
 

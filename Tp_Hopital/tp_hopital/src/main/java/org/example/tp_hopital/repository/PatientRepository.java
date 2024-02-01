@@ -6,8 +6,8 @@ import org.hibernate.Session;
 import java.util.List;
 
 public class PatientRepository extends Repository<Patient> {
-    public PatientRepository(Session session) {
-        super(session);
+    public PatientRepository() {
+
     }
 
     @Override
