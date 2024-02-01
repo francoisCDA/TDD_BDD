@@ -15,13 +15,19 @@ public class BowlingGame {
     }
 
     public void nextFrame(Frame nextFrame) throws GameEndException {
-        if (frameList.size()>=10) throw new GameEndException();
 
+        if ( frameList.size() >= 10 ) throw new GameEndException();
 
+        if (frameList.size() > 1) {
+
+        }
 
 
         frameList.add(nextFrame);
+
+
     }
+
 
     public int getTotalScore() {
 
@@ -30,7 +36,6 @@ public class BowlingGame {
         for (Frame f:frameList) {
             totalScore += f.getScore();
         }
-
         return totalScore;
 
     }

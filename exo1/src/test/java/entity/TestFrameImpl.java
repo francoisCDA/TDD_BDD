@@ -9,6 +9,8 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 
+import java.util.Arrays;
+
 @ExtendWith(MockitoExtension.class)
 public class TestFrameImpl {
 
@@ -151,6 +153,61 @@ public class TestFrameImpl {
         frameImpl.getSpeare();
 
         Assertions.assertThrowsExactly(SpeareException.class,() -> frameImpl.getSpeare());
+    }
+
+
+    /// Bonus Frame
+
+    @Test
+    void testAddBonusShouldNotIncreaseScoreAfterTwoRegularSpear() throws SpeareException {
+
+        Mockito.when(spearelGen.getSpeare()).thenReturn(3);
+        frameImpl = new FrameImpl(spearelGen,3);
+        frameImpl.getSpeare();
+        frameImpl.getSpeare();
+
+        frameImpl.addBonus(Arrays.asList(5,3));
+
+        Assertions.assertEquals(6,frameImpl.getScore());
+    }
+
+    @Test
+    void testAddBonusShouldIncreaseScoreAfterSpareWithTheOneNextSpear() throws SpeareException {
+
+        Mockito.when(spearelGen.getSpeare()).thenReturn(5);
+        frameImpl = new FrameImpl(spearelGen,3);
+        frameImpl.getSpeare();
+        frameImpl.getSpeare();
+
+        frameImpl.addBonus(Arrays.asList(7,2));
+
+        Assertions.assertEquals(17,frameImpl.getScore());
+    }
+
+    @Test
+    void testAddBonusShouldIncreaseScoreAfterStrikeWithTheTwoNextSpear() throws SpeareException {
+
+        Mockito.when(spearelGen.getSpeare()).thenReturn(10);
+        frameImpl = new FrameImpl(spearelGen,3);
+        frameImpl.getSpeare();
+
+        frameImpl.addBonus(Arrays.asList(5,3));
+
+        Assertions.assertEquals(18,frameImpl.getScore());
+    }
+
+    @Test
+    void testAddBonusShouldIncreaseScoreAfterTwoStrikeWithTheOneNextSpear() throws SpeareException {
+
+        Mockito.when(spearelGen.getSpeare()).thenReturn(10);
+        frameImpl = new FrameImpl(spearelGen,3);
+        frameImpl.getSpeare();
+
+        frameImpl.addBonus(Arrays.asList(10));
+        frameImpl.addBonus(Arrays.asList(7,0));
+
+
+        Assertions.assertEquals(27,frameImpl.getScore());
     }
 
 }
