@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="PersistenceUnitSettings">
+    <persistence-units>
+      <persistence-unit name="Default" defaultSearchScope="Selected Entities">
+        <packages>
+          <package value="org.cda.tp_devinettes.entity" />
+        </packages>
+      </persistence-unit>
+    </persistence-units>
+  </component>
+</project>
