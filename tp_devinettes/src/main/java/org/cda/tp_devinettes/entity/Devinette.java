@@ -12,7 +12,6 @@ import java.util.List;
 @Getter
 @Setter
 @RequiredArgsConstructor
-@NoArgsConstructor
 @AllArgsConstructor
 @Builder
 public class Devinette {
@@ -28,6 +27,7 @@ public class Devinette {
     private String answer;
 
     @OneToMany(mappedBy = "devinette", cascade = CascadeType.ALL, orphanRemoval = true)
+    @Builder.Default
     private List<Reponse> reponses = new ArrayList<>();
 
 

@@ -6,12 +6,24 @@ import java.util.List;
 
 public class DevinetteRepository extends Repository<Devinette> {
     @Override
-    Devinette findById(int id) {
+    public Devinette findById(int id) {
         return null;
     }
 
     @Override
-    List<Devinette> findAll() {
-        return null;
+    public List<Devinette> findAll() {
+        List<Devinette> ret = null;
+
+        try {
+            ret = session.createQuery("from devinette").list();
+        } catch (Exception ignored) {
+
+        } finally {
+            session.close();
+        }
+
+        return ret;
     }
+
+
 }

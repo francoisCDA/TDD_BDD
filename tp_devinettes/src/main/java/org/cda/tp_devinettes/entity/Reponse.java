@@ -9,7 +9,6 @@ import org.hibernate.type.SqlTypes;
 @Getter
 @Setter
 @RequiredArgsConstructor
-@NoArgsConstructor
 @AllArgsConstructor
 @Builder
 public class Reponse {

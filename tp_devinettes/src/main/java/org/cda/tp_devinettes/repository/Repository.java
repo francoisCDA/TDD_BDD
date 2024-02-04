@@ -20,14 +20,16 @@ public abstract class Repository<T> {
         this.session = session;
     }
 
-    public void create(T elment) throws DataBaseException {
+
+    public boolean create(T elment) throws DataBaseException {
         try {
             this.session.persist(elment);
-
         } catch (Exception ex) {
             throw new DataBaseException(ex.getMessage());
+        } finally {
+            session.close();
         }
-
+        return true;
     }
 
     public void delete(T element) {
@@ -38,9 +40,9 @@ public abstract class Repository<T> {
         session.persist(element);
     }
 
-    abstract T findById(int id);
+    public abstract T findById(int id);
 
-    abstract List<T> findAll();
+    public abstract List<T> findAll();
 
 
 }
