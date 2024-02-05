@@ -1,6 +1,5 @@
 <%@ taglib prefix="c" uri="jakarta.tags.core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ page pageEncoding="UTF-8" %>
 <html>
 <head>
     <title>Devinettes</title>
@@ -32,7 +31,7 @@
                                     <a class="btn btn-primary" href="answer?id=${riddle.getId()}" >Répondre</a>
                                 </td>
                                 <td>
-                                    <a class="btn btn-info" href="answer?id=${riddle.getId()}" >Répondre</a>
+                                    <a class="btn btn-info" href="answer?id=${riddle.getId()}" >Ouvrir</a>
                                 </td>
                             </tr>
                         </c:forEach>

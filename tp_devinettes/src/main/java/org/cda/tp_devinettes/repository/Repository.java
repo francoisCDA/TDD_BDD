@@ -21,10 +21,13 @@ public abstract class Repository<T> {
     }
 
 
-    public boolean create(T elment) throws DataBaseException {
+    public boolean create(T element) throws DataBaseException {
+        session.beginTransaction();
         try {
-            this.session.persist(elment);
+            this.session.persist(element);
+            session.getTransaction().commit();
         } catch (Exception ex) {
+            session.getTransaction().rollback();
             throw new DataBaseException(ex.getMessage());
         } finally {
             session.close();

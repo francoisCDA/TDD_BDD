@@ -54,8 +54,5 @@ public class RiddleServlet extends HttpServlet {
             req.setAttribute("error",error);
             req.getRequestDispatcher(PathViews.find("errorpage.jsp")).forward(req,resp);
         }
-
     }
-
-
 }

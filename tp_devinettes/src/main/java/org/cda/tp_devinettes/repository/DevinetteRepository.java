@@ -7,7 +7,7 @@ import java.util.List;
 public class DevinetteRepository extends Repository<Devinette> {
     @Override
     public Devinette findById(int id) {
-        return null;
+        return session.get(Devinette.class,id);
     }
 
     @Override

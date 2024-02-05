@@ -43,16 +43,27 @@ public class DevinetteService {
     public String newRiddle(String riddle, String answer) {
 
         Devinette newRiddle = Devinette.builder().riddle(riddle).answer(answer).build();
-
+        devinetteRepository.setSession(sessionFactory.openSession());
         try {
-            if (newRiddle(newRiddle)) {
+            if (devinetteRepository.create(newRiddle)) {
                 return null;
             }
         } catch (Exception e) {
             return e.getMessage();
         }
-
         return "une erreur est survenue";
+    }
+
+    public boolean saveUserAnswer(Reponse userAnswer) {
+        reponseRepository.setSession(sessionFactory.openSession());
+        boolean ret = false;
+        try {
+            reponseRepository.create(userAnswer);
+            ret = true;
+        } catch (DataBaseException e) {
+
+        }
+        return ret;
     }
 
 
@@ -62,7 +73,6 @@ public class DevinetteService {
 
     public List<Devinette> getAllRiddles() {
         devinetteRepository.setSession(sessionFactory.openSession());
-
         return devinetteRepository.findAll();
     }
 
@@ -76,6 +86,16 @@ public class DevinetteService {
             return ret;
         }
     }
+
+    public Devinette getRiddleById(int idRiddle) {
+        devinetteRepository.setSession(sessionFactory.openSession());
+
+        return devinetteRepository.findById(idRiddle);
+
+    }
+
+
+
 
     public static DevinetteService get() {
         if (instance == null) {
