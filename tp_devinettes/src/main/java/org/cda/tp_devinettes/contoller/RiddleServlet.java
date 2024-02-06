@@ -30,17 +30,15 @@ public class RiddleServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        // affichage des devinettes
 
         riddleList = devinetteService.getAllRiddles();
         req.setAttribute("riddles",riddleList);
         req.getRequestDispatcher(PathViews.find("riddle.jsp")).forward(req,resp);
-
     }
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        // gestion formulaire nouvelle devinette
+
         req.setCharacterEncoding("UTF-8");
         resp.setContentType("text/html; charset=UTF-8");
         String newRiddle = req.getParameter("question");

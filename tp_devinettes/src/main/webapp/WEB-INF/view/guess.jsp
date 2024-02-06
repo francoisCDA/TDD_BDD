@@ -14,7 +14,7 @@
             <input type="text" class="form-control" id="useranswer" name="useranswer" >
         </div>
     </div>
-    <button type="submit" class="btn btn-primary">Proposer</button>
+    <button type="submit" class="btn btn-primary" name="id" value="${riddle.getId()}">Proposer</button>
 </form>
 
 </body>

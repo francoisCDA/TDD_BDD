@@ -66,6 +66,6 @@ public class AnswerServlet extends HttpServlet {
         }
 
         req.setAttribute("result",resultat);
-
+        req.getRequestDispatcher(PathViews.find("result.jsp")).forward(req,resp);
     }
 }
