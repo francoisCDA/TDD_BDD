@@ -6,13 +6,11 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="api_biblio" />
         <module name="infra_hibernate" />
+        <module name="domaine_biblio" />
+        <module name="api_biblio" />
         <module name="domaine" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel>
-      <module name="domaine_biblio" target="1.8" />
-    </bytecodeTargetLevel>
   </component>
 </project>
