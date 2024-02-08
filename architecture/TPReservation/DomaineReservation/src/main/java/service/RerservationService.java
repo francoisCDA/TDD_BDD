@@ -37,7 +37,7 @@ public class RerservationService {
             }
         }
 
-        Reservation reservation = new Reservation(userName, room,begin,end);
+        Reservation reservation = new Reservation(userName, room, begin, end);
 
         reservationRepository.save(reservation);
         return reservation;

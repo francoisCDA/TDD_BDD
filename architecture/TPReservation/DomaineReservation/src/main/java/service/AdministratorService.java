@@ -12,10 +12,10 @@ public class AdministratorService {
         this.administratorRepository = administratorRepository;
     }
     public boolean isAdmin(String userName, String password) {
-
         Administrator admin =  administratorRepository.getAdminByIDs(userName,password);
         return admin != null;
     }
+
 
 
 }

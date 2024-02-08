@@ -1,4 +1,4 @@
 package exception;
 
-public class ImpossibleRoomCreation extends Exception{
+public class ImpossibleRoomCreation extends Exception {
 }
