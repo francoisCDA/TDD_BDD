@@ -10,4 +10,6 @@ public interface ReservationRepository {
     void save(Reservation reservation);
 
     List<Reservation> getAll();
+
+    List<Reservation> getReservationByRoomMeetingId(Long id);
 }

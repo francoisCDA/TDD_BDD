@@ -29,15 +29,17 @@ public class RerservationService {
 
         if (begin.before(end) || begin.after(new Date()) ) throw new ImpossibleReservationException("invalide date");
 
-        if (!room.getReservationList().isEmpty()) {
-            for (Reservation reservation:room.getReservationList()) {
+        List<Reservation> listReservation = getReservationByRoomMeetingId(idSalle);
+
+        if (!listReservation.isEmpty()) {
+            for (Reservation reservation:listReservation) {
                 if ((begin.after(reservation.getBegin()) && begin.before(reservation.getEnd())) || (end.after(reservation.getBegin()) && end.before(reservation.getEnd())) ){
                     throw new ImpossibleReservationException("Meeting Room "+ room.getName()  +" reserved");
                 }
             }
         }
 
-        Reservation reservation = new Reservation(userName, room, begin, end);
+        Reservation reservation = new Reservation(idSalle, userName, begin, end);
 
         reservationRepository.save(reservation);
         return reservation;
@@ -45,6 +47,10 @@ public class RerservationService {
 
     public List<Reservation> getAll(){
         return reservationRepository.getAll();
+    }
+
+    public List<Reservation> getReservationByRoomMeetingId(Long id){
+        return reservationRepository.getReservationByRoomMeetingId(id);
     }
 
 

@@ -37,4 +37,13 @@ public class MeetingRoomOrm {
     @OneToMany(mappedBy = "meetingRoomOrm", orphanRemoval = true)
     private List<ReservationOrm> reservationOrms = new ArrayList<>();
 
+    public MeetingRoom toMeetingRoomdomaine() {
+        List<Reservation> reservationList = new ArrayList<>();
+        if (reservationOrms != null && !reservationOrms.isEmpty()) {
+            for (ReservationOrm re:reservationOrms) {
+                reservationList.add(reservationOrms.toReservationDomaine());
+            }
+        }
+    }
+
 }

@@ -1,20 +1,19 @@
 package entity;
 
-import javax.print.MultiDocPrintService;
 import java.util.Date;
-import java.util.Locale;
+
 
 public class Reservation {
 
     private long id;
+    private long idSalle;
     private String userName;
-    private MeetingRoom meetingRoom;
     private Date begin;
     private Date end;
 
-    public Reservation(String userName, MeetingRoom room, Date begin, Date end) {
+    public Reservation(long idSalle, String userName, Date begin, Date end) {
+        this.idSalle = idSalle;
         this.userName = userName;
-        this.meetingRoom = room;
         this.begin = begin;
         this.end = end;
     }
@@ -35,14 +34,6 @@ public class Reservation {
         this.userName = userName;
     }
 
-    public MeetingRoom getMeetingRoom() {
-        return meetingRoom;
-    }
-
-    public void setMeetingRoom(MeetingRoom meetingRoom) {
-        this.meetingRoom = meetingRoom;
-    }
-
     public Date getBegin() {
         return begin;
     }
@@ -58,6 +49,5 @@ public class Reservation {
     public void setEnd(Date end) {
         this.end = end;
     }
-
 
 }

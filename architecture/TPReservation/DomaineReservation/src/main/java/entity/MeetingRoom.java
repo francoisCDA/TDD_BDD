@@ -10,10 +10,14 @@ public class MeetingRoom {
 
     private int capacity;
 
-    private List<Reservation> reservationList;
-
 
     public MeetingRoom(String name, int capacity) {
+        this.name = name;
+        this.capacity = capacity;
+    }
+
+    public MeetingRoom(long id, String name, int capacity) {
+        this.id = id;
         this.name = name;
         this.capacity = capacity;
     }
@@ -42,11 +46,4 @@ public class MeetingRoom {
         this.capacity = capacity;
     }
 
-    public List<Reservation> getReservationList() {
-        return reservationList;
-    }
-
-    public void setReservationList(List<Reservation> reservationList) {
-        this.reservationList = reservationList;
-    }
 }

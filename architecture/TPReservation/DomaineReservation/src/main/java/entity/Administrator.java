@@ -2,12 +2,9 @@ package entity;
 
 public class Administrator {
 
-    private Long id;
-
     private String username;
 
     private String password;
-
 
     public Administrator(String username, String password) {
         this.username = username;
@@ -17,7 +14,6 @@ public class Administrator {
     public void setPassword(String password) {
         this.password = password;
     }
-
 
 
 

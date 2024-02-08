@@ -31,8 +31,8 @@ public abstract class Repository<T> {
         session.persist(element);
     }
 
-    abstract T findById(int id);
+    public abstract T findById(Long id);
 
-    abstract List<T> findAll();
+    public abstract List<T> findAll();
 
 }

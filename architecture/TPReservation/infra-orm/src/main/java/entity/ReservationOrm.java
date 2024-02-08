@@ -28,4 +28,8 @@ public class ReservationOrm {
     @JoinColumn(name = "meeting_room_id")
     private MeetingRoomOrm meetingRoomOrm;
 
+
+    public Reservation toReservationDomaine() {
+        return new Reservation(id,userName,begin,end);
+    }
 }
