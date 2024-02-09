@@ -20,7 +20,6 @@ public class MeetingRoomRepositoryImpl implements MeetingRoomRepository {
 
     public MeetingRoomRepositoryImpl(MeetingRoomOrmRepository meetingRoomOrmRepository) {
         this.meetingRoomOrmRepository = meetingRoomOrmRepository;
-
     }
 
 
@@ -37,17 +36,45 @@ public class MeetingRoomRepositoryImpl implements MeetingRoomRepository {
 
     @Override
     public MeetingRoom save(MeetingRoom room) {
-        return null;
+        MeetingRoomOrm meetingRoomOrm = MeetingRoomOrm.builder().name(room.getName()).capacity(room.getCapacity()).build();
+        Session session = HibernateSession.getSessionFactory().openSession();
+        session.beginTransaction();
+        meetingRoomOrmRepository.setSession(session);
+        try {
+            meetingRoomOrmRepository.create(meetingRoomOrm);
+            session.getTransaction().commit();
+            return meetingRoomOrm.toMeetingRoomdomaine();
+        } catch (Exception ex) {
+            session.getTransaction().rollback();
+            return null;
+        }finally {
+            session.close();
+        }
+
     }
 
     @Override
     public boolean delete(MeetingRoom roomToRm) {
-        return false;
+        Session session = HibernateSession.getSessionFactory().openSession();
+        session.beginTransaction();
+        meetingRoomOrmRepository.setSession(session);
+        try {
+            MeetingRoomOrm meetingRoomOrm = meetingRoomOrmRepository.findById(roomToRm.getId());
+            meetingRoomOrmRepository.delete(meetingRoomOrm);
+            session.getTransaction().commit();
+            return true;
+        } catch (Exception e) {
+            session.getTransaction().rollback();
+            return false;
+        }
     }
 
     @Override
     public List<MeetingRoom> searchByDateTimeCapacity(LocalDateTime meetingDate, int guestNumber) {
-        return null;
+        Session session = HibernateSession.getSessionFactory().openSession();
+
+
+
     }
 
     @Override

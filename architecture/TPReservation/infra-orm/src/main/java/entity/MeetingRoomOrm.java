@@ -38,12 +38,7 @@ public class MeetingRoomOrm {
     private List<ReservationOrm> reservationOrms = new ArrayList<>();
 
     public MeetingRoom toMeetingRoomdomaine() {
-        List<Reservation> reservationList = new ArrayList<>();
-        if (reservationOrms != null && !reservationOrms.isEmpty()) {
-            for (ReservationOrm re:reservationOrms) {
-                reservationList.add(reservationOrms.toReservationDomaine());
-            }
-        }
+        return new MeetingRoom(id,name,capacity);
     }
 
 }
